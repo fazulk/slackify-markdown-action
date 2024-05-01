@@ -1,5 +1,8 @@
-# slackify-markdown-action
-GitHub Action to convert markdown into Slack's mrkdwn. Basically just a wrapper of [jsarafajr/slackify-markdown](https://github.com/jsarafajr/slackify-markdown).
+# Slackify-markdown-action
+
+GitHub Action to convert markdown into Slack's format. Wrapper of [jsarafajr/slackify-markdown](https://github.com/jsarafajr/slackify-markdown) with a little extra.
+
+* Currently working when you pull release notes from within a action to send to slack
 
 ## Usage
 

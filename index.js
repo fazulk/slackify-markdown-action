@@ -1,18 +1,24 @@
-const core = require('@actions/core');
-const fs = require('node:fs')
-const slackifyMarkdown = require('slackify-markdown');
+// import { writeFile } from 'node:fs'
+import { getInput, setFailed, setOutput } from '@actions/core'
+import slackifyMarkdown from 'slackify-markdown'
 
+function cleanString(str) {
+  str = str.replaceAll('<samp>', '')
+  str = str.replaceAll('</samp>', '')
+  return str
+}
 
 try {
-    const input = JSON.parse(core.getInput('text', { required: true }))
-    // const sample = JSON.parse(JSON.stringify("### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes\n\n- Ymls &nbsp;-&nbsp; by @fazulk [<samp>(95e64)</samp>](https://github.com/fazulk/slackify-markdown-action/commit/95e64d6)\n\n##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/fazulk/slackify-markdown-action/compare/v1.0.3...v1.0.4)"))
-    const markdown = JSON.stringify(slackifyMarkdown(input));
-    core.setOutput("text",  `${markdown}`);
-    // fs.writeFile('output.txt', markdown, (err) => {
-    //   if (err)
-    //     throw err
-    // })
-  
-} catch (error) {
-    core.setFailed(error.message);
+  let input = getInput('text', { required: true })
+  input = cleanString(input)
+  input = JSON.parse(input)
+  const markdown = JSON.stringify(slackifyMarkdown(input))
+  setOutput('text', markdown)
+//   writeFile('output.txt', markdown, (err) => {
+//     if (err)
+//       throw err
+//   })
+}
+catch (error) {
+  setFailed(error.message)
 }

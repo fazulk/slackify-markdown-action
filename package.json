@@ -1,28 +1,20 @@
 {
   "name": "slackify-markdown-action",
+  "type": "module",
   "version": "1.0.4",
-  "description": "GitHub Action to convert markdown into Slack's mrkdwn.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LoveToKnow/slackify-markdown-action.git"
-  },
+  "description": "GitHub Action to convert markdown into Slack's markdown.",
+  "author": "Jeff Fasulkey",
+  "license": "MIT",
   "keywords": [
     "Slack",
-    "markdown",
-    "mrkdwn"
+    "markdown"
   ],
-  "author": "Joshua Coady",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/LoveToKnow/slackify-markdown-action/issues"
-  },
-  "homepage": "https://github.com/LoveToKnow/slackify-markdown-action#readme",
+  "main": "index.js",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "slackify-markdown": "^4.4.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.16.1"
   }
 }
