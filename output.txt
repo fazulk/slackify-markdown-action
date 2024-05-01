@@ -1,0 +1,5 @@
+*   🐞 Bug Fixes*
+
+•   Ymls  -  by @fazulk <https://github.com/fazulk/slackify-markdown-action/commit/95e64d6|<samp>(95e64)</samp>>
+
+*    <https://github.com/fazulk/slackify-markdown-action/compare/v1.0.3...v1.0.4|View changes on GitHub>*
