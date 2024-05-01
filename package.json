@@ -4,7 +4,6 @@
   "version": "1.0.4",
   "description": "GitHub Action to convert markdown into Slack's markdown.",
   "author": "Jeff Fasulkey",
-  "license": "MIT",
   "keywords": [
     "Slack",
     "markdown"

@@ -4,6 +4,8 @@ GitHub Action to convert markdown into Slack's format. Wrapper of [jsarafajr/sla
 
 * Currently working when you pull release notes from within a action to send to slack
 
+forked from [LoveToKnow](https://github.com/LoveToKnow/slackify-markdown-action) 💚
+
 ## Usage
 
 ### Inputs
