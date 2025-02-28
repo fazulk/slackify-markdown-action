@@ -23,12 +23,27 @@ try {
   let finalText = cleaned
 
   if (cleaned.length > MAX_LENGTH) {
-    // Truncate the text and add a link to the full changelog
-    const truncated = `${cleaned.substring(0, MAX_LENGTH)}...`
+    // Truncate the text at the last newline before MAX_LENGTH
+    let truncated = ''
+    if (cleaned.includes('\n')) {
+      // Find the last newline before MAX_LENGTH
+      const lastNewlineIndex = cleaned.lastIndexOf('\n', MAX_LENGTH)
+      if (lastNewlineIndex !== -1) {
+        truncated = `${cleaned.substring(0, lastNewlineIndex)}...`
+      }
+      else {
+        // Fallback if no newline found before MAX_LENGTH
+        truncated = `${cleaned.substring(0, MAX_LENGTH)}...`
+      }
+    }
+    else {
+      // No newlines in the text
+      truncated = `${cleaned.substring(0, MAX_LENGTH)}...`
+    }
 
     // Add the link to view full changelog if URL is provided
     if (url)
-      finalText = `${truncated}\n\n\n(<${url}|View full changelog on GitHub>)`
+      finalText = `${truncated}\n\n\n<${url}|View full changelog on GitHub>`
     else
       finalText = truncated
   }
