@@ -1,11 +1,17 @@
 import { getInput, setFailed, setOutput } from '@actions/core'
 import slackifyMarkdown from 'slackify-markdown'
 
+function cleanString(str) {
+  str = str.replaceAll('<samp>', '')
+  str = str.replaceAll('</samp>', '')
+  return str
+}
+
 try {
   const input = getInput('text', { required: true })
   const url = getInput('url', { required: false })
 
-  let markdownContent = input
+  let markdownContent = cleanString(input)
 
   try {
     const parsed = JSON.parse(input)
@@ -18,7 +24,7 @@ try {
   const mrkdwn = slackifyMarkdown(markdownContent)
   const cleaned = mrkdwn.replace(/\n\n/g, '\n\n\n')
 
-  const STANDARD_LINK_TEXT = 'View full changelog on GitHub'
+  const STANDARD_LINK_TEXT = 'View full Release Notes on GitHub'
   const BIG_RELEASE_LINK_TEXT = 'Big Release! :point_right: See all changes on GitHub'
   const EXTRA_CHARS = 10 // For "<", "|", ">", and newlines
   const MAX_LENGTH = url

@@ -5,6 +5,9 @@ inputs:
   text:
     description: Markdown text to convert
     required: true
+  url:
+    description: URL to link to
+    required: false
 outputs:
   text:
     description: Converted Slack mrkdwn text
