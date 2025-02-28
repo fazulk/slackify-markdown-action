@@ -56,46 +56,31 @@ jobs:
           echo "=============================================================="
 
       - name: Post
-        uses: slackapi/slack-github-action@v1.26.0
+        id: slack-post
+        uses: slackapi/slack-github-action@v2.0.0
         with:
-          channel-id: C071TMSAK5X
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
-            {
-              "text": "${{ github.repository }} Release",
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "${{ github.repository }} :tada:",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "rich_text",
-                  "elements": [
-                    {
-                      "type": "rich_text_section",
-                      "elements": [
-                        {
-                          "type": "text",
-                          "style": {
-                            "bold": true
-                          },
-                          "text": ${{ needs.changelog.outputs.release_tag_name }}
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": `${{ steps.convertTextSlackReady.outputs.text }}`
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+            channel: C071JTTK798
+            text: "Your server API is ready to use."
+            blocks:
+              - type: "header"
+                text:
+                  type: "plain_text"
+                  text: "${{ github.repository }} :tada:"
+                  emoji: true
+              # - type: "rich_text"
+              #   elements:
+              #     - type: "rich_text_section"
+              #       elements:
+              #         - type: "text"
+              #           style:
+              #             bold: true
+              #           text: ${{ needs.changelog.outputs.release_tag_name }}
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  style:
+                    bold: true
+                  text: "${{ steps.convertTextSlackReady.outputs.text }}"
