@@ -69,3 +69,5 @@ catch (error) {
   console.error('Action failed with error:', error.message)
   setFailed(error.message)
 }
+
+console.log('Final text:')
