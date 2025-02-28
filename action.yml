@@ -12,8 +12,23 @@ outputs:
   text:
     description: Converted Slack mrkdwn text
 runs:
-  using: node20
-  main: index.js
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+    - name: Install Dependencies
+      run: npm ci
+      shell: bash
+      working-directory: ${{ github.action_path }}
+    - name: Run Action
+      run: node ${{ github.action_path }}/index.js
+      shell: bash
+      env:
+        INPUT_TEXT: ${{ inputs.text }}
+        INPUT_URL: ${{ inputs.url }}
+        GITHUB_OUTPUT: ${{ github.output }}
 branding:
   icon: heart
   color: red
