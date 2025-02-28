@@ -52,8 +52,10 @@ jobs:
 
       - name: Post
         uses: slackapi/slack-github-action@v1.26.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
-          channel-id: C071TMSAK5X
+          channel-id: C071JTTK798
           payload: |
             {
               "text": "${{ github.repository }} Release",
@@ -92,5 +94,3 @@ jobs:
                 }
               ]
             }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
