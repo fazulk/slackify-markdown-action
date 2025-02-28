@@ -16,8 +16,8 @@ try {
 
   const restoredEmojis = mrkdwn.replace(/{{EMOJI_([\w+-]+)}}/g, ':$1:')
 
-  const output = restoredEmojis.replace(/\r\n|\r|\n/g, '\n')
-  setOutput('text', output)
+  // const output = restoredEmojis.replace(/\r\n|\r|\n/g, '\n')
+  setOutput('text', restoredEmojis)
 }
 catch (error) {
   setFailed(error.message)
