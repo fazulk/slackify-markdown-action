@@ -49,9 +49,14 @@ jobs:
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
 
+      - name: Print converted Slack text
+        run: |
+          echo "==================== CONVERTED SLACK TEXT ===================="
+          echo "${{ steps.convertTextSlackReady.outputs.text }}"
+          echo "=============================================================="
+
       - name: Post
         uses: slackapi/slack-github-action@v2.0.0
-
         with:
           method: chat.PostMessage
           token: ${{ secrets.SLACK_BOT_TOKEN }}
