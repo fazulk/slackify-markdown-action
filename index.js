@@ -3,15 +3,12 @@ import slackifyMarkdown from 'slackify-markdown'
 
 try {
   const input = getInput('text', { required: true })
+
   console.log(`First 100 chars of input: ${JSON.stringify(input.substring(0, 100))}`)
 
-  const parsedInput = JSON.parse(input)
-  console.log('parsedInput:', parsedInput)
-
-  const mrkdwn = slackifyMarkdown(parsedInput)
+  // The input is already a string, no need to parse it as JSON
+  const mrkdwn = slackifyMarkdown(input)
   console.log('mrkdwn:', mrkdwn)
-  const mrkdwnString = JSON.stringify(mrkdwn)
-  console.log('mrkdwnString:', mrkdwnString)
 
   const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
   console.log(`Conversion completed, output length: ${cleaned.length}`)
