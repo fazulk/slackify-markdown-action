@@ -53,7 +53,7 @@ try {
   // Always add the link to view full changelog if URL is provided
   if (url) {
     const linkText = isOverLimit ? BIG_RELEASE_LINK_TEXT : STANDARD_LINK_TEXT
-    finalText = `${finalText}\n\n\n<${url}|${linkText}>`
+    finalText = `${finalText}\n\n\n<${url.replaceAll('"', '')}|${linkText}>`
   }
 
   setOutput('text', JSON.stringify(finalText))
