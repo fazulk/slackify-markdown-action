@@ -66,8 +66,7 @@ jobs:
                   "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": "SHORT NO URL",
-                    "emoji": true
+                    "text": "SHORT NO URL"
                   }
                 },
                 {

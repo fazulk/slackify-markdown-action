@@ -1,24 +1,23 @@
-# Slackify-markdown-action
+# slackify-markdown-action
 
-GitHub Action to convert markdown into Slack's format. Wrapper of [jsarafajr/slackify-markdown](https://github.com/jsarafajr/slackify-markdown) with a little extra.
-
-* Currently working when you pull release notes from within a action to send to slack
-
-forked from [LoveToKnow](https://github.com/LoveToKnow/slackify-markdown-action) 💚
+GitHub Action to convert markdown into Slack's markdown.
 
 ## Usage
 
-### Inputs
+```yaml
+- id: convertTextSlackReady
+  uses: fazulk/slackify-markdown-action@master
+  with:
+    text: ${{ needs.changelog.outputs.release_notes }}
+    url: ${{ needs.changelog.outputs.release_url }} # Optional
+```
 
-* `text` - The markdown text to convert.
-* `url` - URL of release 
+## Output
 
-### Outputs
+```yaml
+${{ steps.convertTextSlackReady.outputs.text }}
+```
 
-* `text` - The markdown text converted to Slack's mrkdwn format.
+## Test Change
 
-### Testing
-
-Add your own slackbot token to your repo secret as `SLACK_BOT_TOKEN`
-Push to Master --> Triggers Long and Short Test
-Currently Using Nuxt release notes as an example
+This is a test change to verify the pre-commit hook works correctly.
