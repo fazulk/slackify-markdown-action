@@ -28,7 +28,7 @@ try {
 
     // Add the link to view full changelog if URL is provided
     if (url)
-      finalText = `${truncated}\n\n<${url}|View full changelog on GitHub>`
+      finalText = `${truncated}\n\n\n(<${url}|View full changelog on GitHub>)`
     else
       finalText = truncated
   }
