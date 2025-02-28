@@ -3,7 +3,7 @@ name: Short Test
 on:
   push:
     branches:
-      - master
+      - testing
 
 permissions: write-all
 
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: convertTextSlackReady
-        uses: fazulk/slackify-markdown-action@master
+        uses: fazulk/slackify-markdown-action@testing
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
 

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - testing
 
 jobs:
   test:
@@ -25,14 +26,15 @@ jobs:
 
             ### :heart: Contributors
 
+            - List Item 3
+            - List Item 4
+
             ### Heading 2
 
             [Link](http://example.com)
 
             * List Item 1
             * List Item 2
-            - List Item 3
-            - List Item 4
 
       - name: Verify
         shell: bash
@@ -43,14 +45,16 @@ jobs:
 
             *:heart Contributors*
 
+            •   List Item 3
+            •   List Item 4
+
             *Heading 2*
 
             <http://example.com|Link>
 
             •   List Item 1
             •   List Item 2
-            •   List Item 3
-            •   List Item 4
+
         run: |
           if [ "$ACTUAL" != "$EXPECTED" ]; then
             echo "Actual: '$ACTUAL'"
