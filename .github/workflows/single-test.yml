@@ -28,7 +28,8 @@ jobs:
 
             * List Item 1
             * List Item 2
-            ### Heading 2
+
+            ### Heading 2 :fun:
 
             [Link](http://example.com)
 
@@ -46,7 +47,7 @@ jobs:
             •   List Item 1
             •   List Item 2
 
-            *Heading 2*
+            *Heading 2 :fun:*
 
             <http://example.com|Link>
 
