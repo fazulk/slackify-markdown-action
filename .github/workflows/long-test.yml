@@ -50,21 +50,17 @@ jobs:
           text: ${{ needs.changelog.outputs.release_notes }}
 
       - name: Post
-        uses: slackapi/slack-github-action@v1.26.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
-          channel-id: C071JTTK798
+          method: chat.PostMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
-            {
-              "text": "Your server API is ready to use.",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": '${{ steps.convertTextSlackReady.outputs.text }}'
-                  }
-                }
-              ]
-            }
+            channel: C071JTTK798
+            text: "Your server API is ready to use."
+            blocks:
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  text: '${{ steps.convertTextSlackReady.outputs.text }}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
