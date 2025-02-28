@@ -15,3 +15,4 @@ forked from [LoveToKnow](https://github.com/LoveToKnow/slackify-markdown-action)
 ### Outputs
 
 * `text` - The markdown text converted to Slack's mrkdwn format.
+<!--  -->
