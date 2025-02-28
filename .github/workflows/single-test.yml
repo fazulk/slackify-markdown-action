@@ -41,7 +41,7 @@ jobs:
           EXPECTED: |
             *Heading 1*
 
-            *:heart Contributors*
+            *:heart: Contributors*
 
             •   List Item 1
             •   List Item 2
