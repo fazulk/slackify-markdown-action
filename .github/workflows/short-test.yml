@@ -61,12 +61,10 @@ jobs:
           method: chat.PostMessage
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
-            channel: C071JTTK798
+            channel: "C071JTTK798"
             text: "Your server API is ready to use."
             blocks:
               - type: "section"
                 text:
                   type: "mrkdwn"
-                  text: '${{ steps.convertTextSlackReady.outputs.text }}'
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+                  text: "${{ steps.convertTextSlackReady.outputs.text }}"
