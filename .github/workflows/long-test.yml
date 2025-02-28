@@ -61,6 +61,6 @@ jobs:
               - type: "section"
                 text:
                   type: "mrkdwn"
-                  text: '${{ steps.convertTextSlackReady.outputs.text }}'
+                  text: "${{ steps.convertTextSlackReady.outputs.text }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
