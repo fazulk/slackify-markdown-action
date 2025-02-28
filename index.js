@@ -21,8 +21,9 @@ try {
   // Use the best approach based on the logs
   mrkdwn = slackifyMarkdown(markdownContent)
   // const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
+  const cleaned = mrkdwn.replace(/\n\n/g, '\n\n\n')
 
-  setOutput('text', JSON.stringify(mrkdwn))
+  setOutput('text', JSON.stringify(cleaned))
 }
 catch (error) {
   console.error('Action failed with error:', error.message)
