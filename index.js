@@ -24,8 +24,8 @@ try {
   const mrkdwn = slackifyMarkdown(markdownContent)
   const cleaned = mrkdwn.replace(/\n\n/g, '\n\n\n')
 
-  const STANDARD_LINK_TEXT = 'View full Release Notes on GitHub'
-  const BIG_RELEASE_LINK_TEXT = 'Big Release! :point_right: See Full Release Notes on GitHub'
+  const STANDARD_LINK_TEXT = 'View full release notes on GitHub'
+  const BIG_RELEASE_LINK_TEXT = 'Big Release! :point_right: See full release notes on GitHub'
   const EXTRA_CHARS = 10 // For "<", "|", ">", and newlines
   const MAX_LENGTH = url
     ? 3000 - (Math.max(STANDARD_LINK_TEXT.length, BIG_RELEASE_LINK_TEXT.length) + url.length + EXTRA_CHARS)
