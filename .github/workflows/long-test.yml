@@ -1,11 +1,9 @@
-# MOVE this file into workflows to quick test
-
 name: Test
 
 on:
   push:
     branches:
-      - test
+      - master
 
 permissions: write-all
 
@@ -28,9 +26,12 @@ jobs:
       - id: release-notes
         name: Get release notes
         run: |
+          # Use a tag name from an input parameter or hardcode it
+          TAG_NAME="v2.17.4" # Replace with your desired tag or use an input parameter
+
           gh api \
             -H "Accept: application/vnd.github+json" \
-            /repos/fazulk/slackify-markdown-action/releases/latest > data.json
+            /repos/nuxt/nuxt/releases/tags/$TAG_NAME > data.json
           echo "release_notes=$(jq '.body' data.json)" >> $GITHUB_OUTPUT
           echo "release_tag_name=$(jq '.tag_name' data.json)" >> $GITHUB_OUTPUT
           echo "release_published_at=$(jq '.published_at' data.json)" >> $GITHUB_OUTPUT

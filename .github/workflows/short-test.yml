@@ -1,0 +1,72 @@
+# MOVE this file into workflows to quick test
+
+name: Test
+
+on:
+  push:
+    branches:
+      - test
+
+permissions: write-all
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    outputs:
+      release_notes: ${{ steps.release-notes.outputs.release_notes }}
+      published_at: ${{ steps.release-notes.outputs.release_published_at }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - id: release-notes
+        name: Get release notes
+        run: |
+          # Use a tag name from an input parameter or hardcode it
+          TAG_NAME="v2.18.1" # Replace with your desired tag or use an input parameter
+          
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            /repos/nuxt/nuxt/releases/tags/$TAG_NAME > data.json
+          echo "release_notes=$(jq '.body' data.json)" >> $GITHUB_OUTPUT
+          echo "release_tag_name=$(jq '.tag_name' data.json)" >> $GITHUB_OUTPUT
+          echo "release_published_at=$(jq '.published_at' data.json)" >> $GITHUB_OUTPUT
+          echo "release_url=$(jq '.html_url' data.json)" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-to-slack-channel:
+    needs: changelog
+    name: Post release notes to slack
+    runs-on: ubuntu-latest
+    steps:
+      - id: convertTextSlackReady
+        uses: fazulk/slackify-markdown-action@master
+        with:
+          text: ${{ needs.changelog.outputs.release_notes }}
+
+      - name: Post
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: C071JTTK798
+          payload: |
+            {
+              "text": "Your server API is ready to use.",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ${{ steps.convertTextSlackReady.outputs.text }}
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
