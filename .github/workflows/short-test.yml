@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - testing
+      - master
 
 permissions: write-all
 
