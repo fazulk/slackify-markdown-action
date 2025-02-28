@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: convertTextSlackReady
-        uses: fazulk/slackify-markdown-action@testing
+        uses: fazulk/slackify-markdown-action@master
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
 
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: convertTextSlackReady
-        uses: fazulk/slackify-markdown-action@testing
+        uses: fazulk/slackify-markdown-action@master
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
           url: ${{ needs.changelog.outputs.release_url }}
