@@ -9,7 +9,7 @@ try {
   // The input appears to be a JSON string, so we need to parse it first
   let markdownContent
   try {
-    markdownContent = JSON.parse(input)
+    markdownContent = JSON.stringify(JSON.parse(input))
     console.log('Successfully parsed input as JSON')
   }
   catch (e) {
