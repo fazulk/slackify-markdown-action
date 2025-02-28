@@ -1,0 +1,37 @@
+{
+    "text": "fazulk/slackify-markdown-action Release",
+    "blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "fazulk/slackify-markdown-action :tada:",
+          "emoji": true
+        }
+      },
+      {
+        "type": "rich_text",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "text",
+                "style": {
+                  "bold": true
+                },
+                "text": 
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*👉 Changelog*\n\n\n\n<https://github.com/nuxt/nuxt/compare/v2.17.3...v2.17.4|compare changes>\n\n\n\n*🩹 Fixes*\n\n\n\n•   ​*types:*​ Bump `serve-static` types to v1.15.7 (<https://github.com/nuxt/nuxt/commit/1c44c376d|1c44c376d>)\n\n•   ​*generator:*​ Use maintained `html-minifier-terser` (<https://github.com/nuxt/nuxt/pull/26914|#26914>)\n\n•   ​*vue-app:*​ Prevent double page mount (<https://github.com/nuxt/nuxt/pull/10874|#10874>)\n\n•   ​*core:*​ Don't skip loading runtime modules if one is improperly resolved (<https://github.com/nuxt/nuxt/pull/10193|#10193>)\n\n•   ​*vue-app:*​ Prevent error page mounting twice (<https://github.com/nuxt/nuxt/pull/27484|#27484>)\n\n\n\n*🏡 Chore*\n\n\n\n•   Update repository field for `@nuxt/config` (<https://github.com/nuxt/nuxt/commit/c283cc039|c283cc039>)\n\n•   Mark <https://github.com/advisories/GHSA-2p57-rm9w-gvfp|https://github.com/advisories/GHSA-2p57-rm9w-gvfp> as not applicable (<https://github.com/nuxt/nuxt/commit/4782e3c90|4782e3c90>)\n\n•   Update repository urls (<https://github.com/nuxt/nuxt/commit/07668eafb|07668eafb>)\n\n•   Mark GHSA-grv7-fg5c-xmjg as not applicable (<https://github.com/nuxt/nuxt/commit/eeb6207c9|eeb6207c9>)\n\n•   Refresh yarn lockfile (<https://github.com/nuxt/nuxt/pull/27612|#27612>)\n\n\n\n*✅ Tests*\n\n\n\n•   Properly close `page` in e2e tests (<https://github.com/nuxt/nuxt/commit/1700aa131|1700aa131>)\n\n•   Wait for navigation in redirect test (<https://github.com/nuxt/nuxt/commit/e74715606|e74715606>)\n\n•   Don't register promise in external nav (<https://github.com/nuxt/nuxt/pull/27468|#27468>)\n\n\n\n*🤖 CI*\n\n\n\n•   Add label PR workflow (<https://github.com/nuxt/nuxt/pull/25580|#25580>)\n\n•   Make edge releases on commit basis (<https://github.com/nuxt/nuxt/commit/1eb08d1ba|1eb08d1ba>)\n\n•   Remove ref for release workflows (<https://github.com/nuxt/nuxt/commit/06f91349f|06f91349f>)\n\n•   Don't skip tests from branch named `dev` (<https://github.com/nuxt/nuxt/commit/2a5d05257|2a5d05257>)\n\n•   Update test conditions (<https://github.com/nuxt/nuxt/commit/940fc7dcb|940fc7dcb>)\n\n\n\n*❤️ Contributors*\n\n\n\n•   Dmitriy (@Kolobok12309)\n\n•   Ivan Ehreshi (@IvanEh)\n\n•   Daniel Roe (@danielroe)\n\n•   Damian Głowala (@DamianGlowala)\n\n"
+        }
+      }
+    ]
+  }
