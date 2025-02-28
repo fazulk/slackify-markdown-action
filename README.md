@@ -11,6 +11,7 @@ forked from [LoveToKnow](https://github.com/LoveToKnow/slackify-markdown-action)
 ### Inputs
 
 * `text` - The markdown text to convert.
+* `url` - URL of release 
 
 ### Outputs
 
