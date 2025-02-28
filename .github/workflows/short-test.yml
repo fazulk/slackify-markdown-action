@@ -49,8 +49,10 @@ jobs:
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
 
-      - name: Print converted Slack text
+      - name: Print original and converted text
         run: |
+          echo "==================== ORIGINAL MARKDOWN TEXT ===================="
+          echo "${{ needs.changelog.outputs.release_notes }}"
           echo "==================== CONVERTED SLACK TEXT ===================="
           echo "${{ steps.convertTextSlackReady.outputs.text }}"
           echo "=============================================================="
