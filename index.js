@@ -3,42 +3,39 @@ import slackifyMarkdown from 'slackify-markdown'
 
 try {
   const input = getInput('text', { required: true })
-  console.log(`First 100 chars of input: ${JSON.stringify(input.substring(0, 100))}`)
+  const url = getInput('url', { required: false })
 
-  // Try different approaches and see which one works
   let markdownContent = input
-  let mrkdwn
 
   try {
     const parsed = JSON.parse(input)
-    mrkdwn = slackifyMarkdown(parsed)
-    markdownContent = parsed // Use this if it works
+    markdownContent = parsed
   }
   catch (e) {
-    console.log('Approach 2 failed:', e.message)
+    console.error('Parsing failed:', e.message)
   }
 
-  // Use the best approach based on the logs
-  mrkdwn = slackifyMarkdown(markdownContent)
-  // const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
+  const mrkdwn = slackifyMarkdown(markdownContent)
   const cleaned = mrkdwn.replace(/\n\n/g, '\n\n\n')
 
-  setOutput('text', JSON.stringify(cleaned))
+  // Check if the markdown is more than 300 characters
+  const MAX_LENGTH = 1000
+  let finalText = cleaned
+
+  if (cleaned.length > MAX_LENGTH) {
+    // Truncate the text and add a link to the full changelog
+    const truncated = `${cleaned.substring(0, MAX_LENGTH)}...`
+
+    // Add the link to view full changelog if URL is provided
+    if (url)
+      finalText = `${truncated}\n\n<${url}|View full changelog on GitHub>`
+    else
+      finalText = truncated
+  }
+
+  setOutput('text', JSON.stringify(finalText))
 }
 catch (error) {
   console.error('Action failed with error:', error.message)
   setFailed(error.message)
 }
-
-// function cleanString(str) {
-//   str = str.replaceAll('<samp>', '')
-//   str = str.replaceAll('</samp>', '')
-//   return str
-// }
-
-// try {
-//   let input = getInput('text', { required: true })
-//   input = cleanString(input)
-//   input = JSON.parse(input)
-//   const markdown = JSON.stringify(slackifyMarkdown(input))
-//   setOutput('text', markdown)

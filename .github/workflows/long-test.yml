@@ -14,6 +14,7 @@ jobs:
       release_notes: ${{ steps.release-notes.outputs.release_notes }}
       published_at: ${{ steps.release-notes.outputs.release_published_at }}
       release_tag_name: ${{ steps.release-notes.outputs.release_tag_name }}
+      release_url: ${{ steps.release-notes.outputs.release_url }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -49,6 +50,7 @@ jobs:
         uses: fazulk/slackify-markdown-action@testing
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
+          url: ${{ needs.changelog.outputs.release_url }}
 
       - name: Post
         uses: slackapi/slack-github-action@v1.26.0
