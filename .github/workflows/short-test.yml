@@ -3,7 +3,7 @@ name: Short Test
 on:
   push:
     branches:
-      - test
+      - master
 
 permissions: write-all
 

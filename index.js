@@ -11,7 +11,7 @@ try {
   const input = getInput('text', { required: true })
   // input = cleanString(input)
   // input = JSON.parse(input)
-  const mrkdwn = JSON.stringify(slackifyMarkdown(input))
+  const mrkdwn = slackifyMarkdown(input)
   const output = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
   setOutput('text', output)
 }
