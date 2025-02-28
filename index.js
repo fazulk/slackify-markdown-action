@@ -18,8 +18,12 @@ try {
   const mrkdwn = slackifyMarkdown(markdownContent)
   const cleaned = mrkdwn.replace(/\n\n/g, '\n\n\n')
 
-  // Check if the markdown is more than 300 characters
-  const MAX_LENGTH = 1000
+  const LINK_TEXT = 'View full changelog on GitHub'
+  const EXTRA_CHARS = 10 // For "<", "|", ">", and newlines
+  const MAX_LENGTH = url
+    ? 1000 - (LINK_TEXT.length + url.length + EXTRA_CHARS)
+    : 1000
+
   let finalText = cleaned
 
   if (cleaned.length > MAX_LENGTH) {
@@ -29,7 +33,7 @@ try {
       // Find the last newline before MAX_LENGTH
       const lastNewlineIndex = cleaned.lastIndexOf('\n', MAX_LENGTH)
       if (lastNewlineIndex !== -1) {
-        truncated = `${cleaned.substring(0, lastNewlineIndex)}...`
+        truncated = `${cleaned.substring(0, lastNewlineIndex)}\n\n...`
       }
       else {
         // Fallback if no newline found before MAX_LENGTH
@@ -43,7 +47,7 @@ try {
 
     // Add the link to view full changelog if URL is provided
     if (url)
-      finalText = `${truncated}\n\n\n<${url}|View full changelog on GitHub>`
+      finalText = `${truncated}\n\n\n<${url}|${LINK_TEXT}>`
     else
       finalText = truncated
   }
