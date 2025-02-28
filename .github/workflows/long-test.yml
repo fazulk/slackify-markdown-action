@@ -1,0 +1,98 @@
+name: Long Test
+
+on:
+  push:
+    branches:
+      - testing
+
+permissions: write-all
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    outputs:
+      release_notes: ${{ steps.release-notes.outputs.release_notes }}
+      published_at: ${{ steps.release-notes.outputs.release_published_at }}
+      release_tag_name: ${{ steps.release-notes.outputs.release_tag_name }}
+      release_url: ${{ steps.release-notes.outputs.release_url }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - id: release-notes
+        name: Get release notes
+        run: |
+          # Use a tag name from an input parameter or hardcode it
+          TAG_NAME="v2.17.4" # Replace with your desired tag or use an input parameter
+
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            /repos/nuxt/nuxt/releases/tags/$TAG_NAME > data.json
+          echo "release_notes=$(jq '.body' data.json)" >> $GITHUB_OUTPUT
+          echo "release_tag_name=$(jq '.tag_name' data.json)" >> $GITHUB_OUTPUT
+          echo "release_published_at=$(jq '.published_at' data.json)" >> $GITHUB_OUTPUT
+          echo "release_url=$(jq '.html_url' data.json)" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-to-slack-channel:
+    needs: changelog
+    name: Post release notes to slack
+    runs-on: ubuntu-latest
+    steps:
+      - id: convertTextSlackReady
+        uses: fazulk/slackify-markdown-action@testing
+        with:
+          text: ${{ needs.changelog.outputs.release_notes }}
+          url: ${{ needs.changelog.outputs.release_url }}
+
+      - name: Post
+        uses: slackapi/slack-github-action@v1.26.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        with:
+          channel-id: C071JTTK798
+          payload: |
+            {
+              "text": "${{ github.repository }} Release",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "${{ github.repository }} :tada:",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "style": {
+                            "bold": true
+                          },
+                          "text": ${{ needs.changelog.outputs.release_tag_name }}
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ${{ steps.convertTextSlackReady.outputs.text }}
+                  }
+                }
+              ]
+            }
