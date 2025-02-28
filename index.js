@@ -12,13 +12,11 @@ try {
 
   const preservedEmojis = input.replace(/:([\w+-]+):/g, '{{EMOJI_$1}}')
 
-  // input = cleanString(input)
-  // input = JSON.parse(input)
   const mrkdwn = slackifyMarkdown(preservedEmojis)
 
-  const restoredEmojis = mrkdwn.replace(/{{EMOJI_([\w+-]+)}}/g, ':$1:')
+  // const restoredEmojis = mrkdwn.replace(/{{EMOJI_([\w+-]+)}}/g, ':$1:')
 
-  const output = restoredEmojis.replace(/\r\n|\r|\n/g, '\n')
+  const output = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
   setOutput('text', output)
 }
 catch (error) {
