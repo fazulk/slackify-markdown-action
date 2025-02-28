@@ -70,17 +70,3 @@ jobs:
                   type: "plain_text"
                   text: "${{ github.repository }} :tada:"
                   emoji: true
-              # - type: "rich_text"
-              #   elements:
-              #     - type: "rich_text_section"
-              #       elements:
-              #         - type: "text"
-              #           style:
-              #             bold: true
-              #           text: ${{ needs.changelog.outputs.release_tag_name }}
-              - type: "section"
-                text:
-                  type: "mrkdwn"
-                  style:
-                    bold: true
-                  text: "${{ steps.convertTextSlackReady.outputs.text }}"
