@@ -45,17 +45,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: convertTextSlackReady
-        uses: LoveToKnow/slackify-markdown-action@v1.1.1
+        uses: fazulk/slackify-markdown-action@testing
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
 
-      # - name: Print original and converted text
-      #   run: |
-      #     echo "==================== ORIGINAL MARKDOWN TEXT ===================="
-      #     echo "${{ needs.changelog.outputs.release_notes }}"
-      #     echo "==================== CONVERTED SLACK TEXT ===================="
-      #     echo "${{ steps.convertTextSlackReady.outputs.text }}"
-      #     echo "=============================================================="
+      - name: Print original and converted text
+        run: |
+          echo "==================== CONVERTED SLACK TEXT ===================="
+          echo "${{ steps.convertTextSlackReady.outputs.text }}"
+          echo "=============================================================="
 
       - name: Post
         uses: slackapi/slack-github-action@v2.0.0
