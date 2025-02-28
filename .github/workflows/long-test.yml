@@ -30,7 +30,7 @@ jobs:
         name: Get release notes
         run: |
           # Use a tag name from an input parameter or hardcode it
-          TAG_NAME="v1.1.14" # Replace with your desired tag or use an input parameter
+          TAG_NAME="v1.1.4" # Replace with your desired tag or use an input parameter
 
           gh api \
             -H "Accept: application/vnd.github+json" \
