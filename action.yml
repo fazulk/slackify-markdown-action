@@ -12,29 +12,8 @@ outputs:
   text:
     description: Converted Slack mrkdwn text
 runs:
-  using: composite
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        repository: fazulk/slackify-markdown-action
-        ref: master
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-    
-    - name: Install dependencies
-      shell: bash
-      run: npm install
-      
-    - name: Run script
-      shell: bash
-      run: node index.js
-      env:
-        text: ${{ inputs.text }}
-        url: ${{ inputs.url }}
+  using: node20
+  main: index.js
 branding:
   icon: heart
   color: red
