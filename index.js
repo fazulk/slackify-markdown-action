@@ -11,6 +11,10 @@ try {
   const input = getInput('text', { required: true })
   const url = getInput('url', { required: false })
 
+  // Debug inputs
+  console.log('Received input text:', input)
+  console.log('Received URL:', url)
+
   let markdownContent = cleanString(input)
 
   try {
@@ -63,7 +67,17 @@ try {
     finalText = `${finalText}${ellipsis} <${url.replaceAll('"', '')}|${linkText}>`
   }
 
+  // Debug output
+  console.log('Setting output text:', finalText)
   setOutput('text', JSON.stringify(finalText))
+
+  // Also write to GITHUB_OUTPUT file directly as a fallback
+  const githubOutput = process.env.GITHUB_OUTPUT
+  if (githubOutput) {
+    const fs = await import('node:fs')
+    fs.appendFileSync(githubOutput, `text=${JSON.stringify(finalText)}` + '\n')
+    console.log('Wrote to GITHUB_OUTPUT file')
+  }
 }
 catch (error) {
   console.error('Action failed with error:', error.message)
