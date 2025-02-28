@@ -59,7 +59,7 @@ jobs:
         id: slack-post
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          method: chat.PostMessage
+          method: chat.postMessage
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             channel: C071JTTK798
