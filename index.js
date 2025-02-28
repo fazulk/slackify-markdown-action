@@ -22,8 +22,8 @@ try {
   const BIG_RELEASE_LINK_TEXT = 'Big Release! :point_right: See all changes on GitHub'
   const EXTRA_CHARS = 10 // For "<", "|", ">", and newlines
   const MAX_LENGTH = url
-    ? 1000 - (Math.max(STANDARD_LINK_TEXT.length, BIG_RELEASE_LINK_TEXT.length) + url.length + EXTRA_CHARS)
-    : 1000
+    ? 3000 - (Math.max(STANDARD_LINK_TEXT.length, BIG_RELEASE_LINK_TEXT.length) + url.length + EXTRA_CHARS)
+    : 3000
 
   let finalText = cleaned
   const isOverLimit = cleaned.length > MAX_LENGTH
