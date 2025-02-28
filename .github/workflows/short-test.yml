@@ -69,9 +69,3 @@ jobs:
                 text:
                   type: "mrkdwn"
                   text: "${{ steps.convertTextSlackReady.outputs.text }}"
-
-      - name: Debug Slack response
-        if: always()
-        run: |
-          echo "Slack response status: ${{ steps.slack-post.outputs.status }}"
-          echo "Slack response: ${{ steps.slack-post.outputs.response }}"
