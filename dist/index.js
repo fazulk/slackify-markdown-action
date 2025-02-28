@@ -16546,5 +16546,3 @@ catch (error) {
   ;(0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message)
 }
 
-console.log('Final text:')
-
