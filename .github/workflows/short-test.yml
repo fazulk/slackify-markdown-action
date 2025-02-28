@@ -13,6 +13,7 @@ jobs:
     outputs:
       release_notes: ${{ steps.release-notes.outputs.release_notes }}
       published_at: ${{ steps.release-notes.outputs.release_published_at }}
+      release_tag_name: ${{ steps.release-notes.outputs.release_tag_name }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -58,27 +59,45 @@ jobs:
       - name: Post
         id: slack-post
         uses: slackapi/slack-github-action@v2.0.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
-          method: chat.postMessage
-          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel-id: C071JTTK798
           payload: |
-            channel: C071JTTK798
-            text: "Your server API is ready to use."
-            blocks:
-              - type: "header"
-                text:
-                  type: "plain_text"
-                  text: "${{ github.repository }} :tada:"
-                  emoji: true
-              - type: "rich_text"
-                elements:
-                  - type: "rich_text_section"
-                    elements:
-                      - type: "text"
-                        style:
-                          bold: true
-                        text: "${{ needs.changelog.outputs.release_tag_name }}"
-              - type: "section"
-                text:
-                  type: "mrkdwn"
-                  text: "${{ steps.convertTextSlackReady.outputs.text }}"
+            {
+              "text": "${{ github.repository }} Release",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "${{ github.repository }} :tada:",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "style": {
+                            "bold": true
+                          },
+                          "text": ${{ needs.changelog.outputs.release_tag_name }}
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ${{ steps.convertTextSlackReady.outputs.text }}
+                  }
+                }
+              ]
+            }
