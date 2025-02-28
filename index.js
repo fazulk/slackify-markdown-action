@@ -45,11 +45,11 @@ try {
 
   // Use the best approach based on the logs
   mrkdwn = slackifyMarkdown(markdownContent)
-  // const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
-  // console.log(`Conversion completed, output length: ${cleaned.length}`)
-  // console.log(`First 100 chars of output: ${JSON.stringify(cleaned.substring(0, 100))}`)
+  const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n\n')
+  console.log(`Conversion completed, output length: ${cleaned.length}`)
+  console.log(`First 100 chars of output: ${JSON.stringify(cleaned.substring(0, 100))}`)
 
-  setOutput('text', mrkdwn)
+  setOutput('text', cleaned)
 }
 catch (error) {
   console.error('Action failed with error:', error.message)
