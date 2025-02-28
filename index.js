@@ -6,8 +6,19 @@ try {
 
   console.log(`First 100 chars of input: ${JSON.stringify(input.substring(0, 100))}`)
 
-  // The input is already a string, no need to parse it as JSON
-  const mrkdwn = slackifyMarkdown(input)
+  // The input appears to be a JSON string, so we need to parse it first
+  let markdownContent
+  try {
+    markdownContent = JSON.parse(input)
+    console.log('Successfully parsed input as JSON')
+  }
+  catch (e) {
+    // If parsing fails, use the input as is
+    console.log('JSON parsing failed, using raw input')
+    markdownContent = input
+  }
+
+  const mrkdwn = slackifyMarkdown(markdownContent)
   console.log('mrkdwn:', mrkdwn)
 
   const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
