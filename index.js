@@ -14,7 +14,7 @@ try {
   let markdownContent = cleanString(input)
 
   try {
-    const parsed = JSON.parse(input)
+    const parsed = JSON.parse(markdownContent)
     markdownContent = parsed
   }
   catch (e) {

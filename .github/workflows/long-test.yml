@@ -66,6 +66,13 @@ jobs:
                   "type": "header",
                   "text": {
                     "type": "plain_text",
+                    "text": "LONG NO URL"
+                  }
+                },
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
                     "text": "${{ github.repository }} :tada:",
                     "emoji": true
                   }
@@ -118,6 +125,13 @@ jobs:
             {
               "text": "${{ github.repository }} Release",
               "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "LONG WITH URL"
+                  }
+                },
                 {
                   "type": "header",
                   "text": {
