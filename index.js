@@ -49,7 +49,7 @@ try {
   console.log(`Conversion completed, output length: ${cleaned.length}`)
   console.log(`First 100 chars of output: ${JSON.stringify(cleaned.substring(0, 100))}`)
 
-  setOutput('text', cleaned)
+  setOutput('text', JSON.stringify(cleaned))
 }
 catch (error) {
   console.error('Action failed with error:', error.message)
