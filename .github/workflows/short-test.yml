@@ -68,4 +68,6 @@ jobs:
               - type: "section"
                 text:
                   type: "mrkdwn"
+                  style:
+                    bold: true
                   text: "${{ steps.convertTextSlackReady.outputs.text }}"
