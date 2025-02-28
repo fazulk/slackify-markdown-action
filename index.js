@@ -53,7 +53,8 @@ try {
   // Always add the link to view full changelog if URL is provided
   if (url) {
     const linkText = isOverLimit ? BIG_RELEASE_LINK_TEXT : STANDARD_LINK_TEXT
-    finalText = `${finalText}... <${url.replaceAll('"', '')}|${linkText}>`
+    const ellipsis = isOverLimit ? '\n\n...' : '\n\n'
+    finalText = `${finalText}${ellipsis} <${url.replaceAll('"', '')}|${linkText}>`
   }
 
   setOutput('text', JSON.stringify(finalText))
