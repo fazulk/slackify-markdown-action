@@ -33,7 +33,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             /repos/nuxt/nuxt/releases/tags/$TAG_NAME > data.json
           echo "release_notes=$(jq '.body' data.json)" >> $GITHUB_OUTPUT
-          echo "release_tag_name=$(jq '.tag_name' data.json)" >> $GITHUB_OUTPUT
+          echo "release_tag_name=$TAG_NAME >> $GITHUB_OUTPUT
           echo "release_published_at=$(jq '.published_at' data.json)" >> $GITHUB_OUTPUT
           echo "release_url=$(jq '.html_url' data.json)" >> $GITHUB_OUTPUT
         env:
@@ -70,7 +70,7 @@ jobs:
                       - type: "text"
                         style:
                           bold: true
-                        text: "${{ 'ok' || needs.changelog.outputs.release_tag_name }}"
+                        text: "${{ needs.changelog.outputs.release_tag_name }}"
               - type: "section"
                 text:
                   type: "mrkdwn"
