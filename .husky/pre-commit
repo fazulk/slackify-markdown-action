@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run pre-commit
+# Run build
+npm run build
+
+# Add the dist directory to the commit
+git add dist/
