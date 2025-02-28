@@ -33,8 +33,8 @@ runs:
       shell: bash
       run: node index.js
       env:
-        INPUT_TEXT: ${{ inputs.text }}
-        INPUT_URL: ${{ inputs.url }}
+        text: ${{ inputs.text }}
+        url: ${{ inputs.url }}
 branding:
   icon: heart
   color: red
