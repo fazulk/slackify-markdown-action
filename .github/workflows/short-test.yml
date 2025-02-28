@@ -50,6 +50,7 @@ jobs:
         uses: fazulk/slackify-markdown-action@testing
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
+          url: ${{ needs.changelog.outputs.release_url }}
 
       - name: Post
         uses: slackapi/slack-github-action@v1.26.0
