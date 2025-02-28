@@ -5,7 +5,13 @@ try {
   const input = getInput('text', { required: true })
   console.log(`First 100 chars of input: ${JSON.stringify(input.substring(0, 100))}`)
 
-  const mrkdwn = JSON.stringify(slackifyMarkdown(JSON.parse(input)))
+  const parsedInput = JSON.parse(input)
+  console.log('parsedInput:', parsedInput)
+
+  const mrkdwn = slackifyMarkdown(parsedInput)
+  console.log('mrkdwn:', mrkdwn)
+  const mrkdwnString = JSON.stringify(mrkdwn)
+  console.log('mrkdwnString:', mrkdwnString)
 
   const cleaned = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
   console.log(`Conversion completed, output length: ${cleaned.length}`)
