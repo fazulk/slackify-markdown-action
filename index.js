@@ -8,11 +8,12 @@ function cleanString(str) {
 }
 
 try {
-  let input = getInput('text', { required: true })
-  input = cleanString(input)
-  input = JSON.parse(input)
-  const markdown = JSON.stringify(slackifyMarkdown(input))
-  setOutput('text', markdown)
+  const input = getInput('text', { required: true })
+  // input = cleanString(input)
+  // input = JSON.parse(input)
+  const mrkdwn = JSON.stringify(slackifyMarkdown(input))
+  const output = mrkdwn.replace(/\r\n|\r|\n/g, '\n')
+  setOutput('text', output)
 }
 catch (error) {
   setFailed(error.message)

@@ -1,6 +1,4 @@
-# MOVE this file into workflows to quick test
-
-name: Test
+name: Short Test
 
 on:
   push:
@@ -30,7 +28,7 @@ jobs:
         run: |
           # Use a tag name from an input parameter or hardcode it
           TAG_NAME="v2.18.1" # Replace with your desired tag or use an input parameter
-          
+
           gh api \
             -H "Accept: application/vnd.github+json" \
             /repos/nuxt/nuxt/releases/tags/$TAG_NAME > data.json
