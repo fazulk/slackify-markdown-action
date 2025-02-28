@@ -23,19 +23,13 @@ jobs:
         with:
           text: |
             # Heading 1
-
             ### :heart: Contributors
-
             * List Item 1
             * List Item 2
-
             ### Heading 2 :fun:
-
             [Link](http://example.com)
-
             - List Item 3
             - List Item 4
-
       - name: Verify
         shell: bash
         env:
