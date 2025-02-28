@@ -86,7 +86,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ steps.convertTextSlackReady.outputs.text }}"
+                    "text": ${{ steps.convertTextSlackReady.outputs.text }}
                   }
                 }
               ]
