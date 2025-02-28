@@ -58,6 +58,19 @@ jobs:
             channel: "C071JTTK798"
             text: "Your server API is ready to use."
             blocks:
+              - type: "header"
+                text:
+                  type: "plain_text"
+                  text: "${{ github.repository }} :tada:"
+                  emoji: true
+              - type: "rich_text"
+                elements:
+                  - type: "rich_text_section"
+                    elements:
+                      - type: "text"
+                        style:
+                          bold: true
+                        text: ${{ needs.changelog.outputs.release_tag_name }}
               - type: "section"
                 text:
                   type: "mrkdwn"
