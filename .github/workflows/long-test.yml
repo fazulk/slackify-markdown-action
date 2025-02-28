@@ -5,6 +5,7 @@ on:
     branches:
       - testing
       - master
+
 permissions: write-all
 
 jobs:
