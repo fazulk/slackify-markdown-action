@@ -28,13 +28,13 @@ jobs:
         name: Get release notes
         run: |
           # Use a tag name from an input parameter or hardcode it
-          TAG_NAME="v2.18.1" # Replace with your desired tag or use an input parameter
+          TAG_NAME="v2.18.4" # Replace with your desired tag or use an input parameter
 
           gh api \
             -H "Accept: application/vnd.github+json" \
             /repos/nuxt/nuxt/releases/tags/$TAG_NAME > data.json
           echo "release_notes=$(jq '.body' data.json)" >> $GITHUB_OUTPUT
-          echo "release_tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "release_tag_name=$(jq '.tag_name' data.json)" >> $GITHUB_OUTPUT
           echo "release_published_at=$(jq '.published_at' data.json)" >> $GITHUB_OUTPUT
           echo "release_url=$(jq '.html_url' data.json)" >> $GITHUB_OUTPUT
         env:
@@ -50,15 +50,8 @@ jobs:
         with:
           text: ${{ needs.changelog.outputs.release_notes }}
 
-      - name: Print original and converted text
-        run: |
-          echo "==================== CONVERTED SLACK TEXT ===================="
-          echo "${{ steps.convertTextSlackReady.outputs.text }}"
-          echo "=============================================================="
-
       - name: Post
-        id: slack-post
-        uses: slackapi/slack-github-action@v2.0.0
+        uses: slackapi/slack-github-action@v1.26.0
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
